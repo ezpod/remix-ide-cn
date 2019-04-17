@@ -187,28 +187,27 @@ module.exports = class TestTab {
     var el = yo`
       <div class="${css.testTabView}" id="testView">
         <div class="${css.infoBox}">
-        <div class="${css.title}">Unit Testing</div>
-          Test your smart contract by creating a foo_test.sol file (open ballot_test.sol to see the example).
-          <br/>
-          You will find more informations in the <a href="https://remix.readthedocs.io/en/latest/unittesting_tab.html">documentation</a>
-          Then use the stand alone NPM module remix-tests to run unit tests in your Continuous Integration
-          <a href="https://www.npmjs.com/package/remix-tests">https://www.npmjs.com/package/remix-tests</a>.
-          <br/>
-          For more details, see
-          How to test smart contracts guide in our documentation.
-          <div class="${css.generateTestFile}" onclick="${generateTestFile}">Generate test file</div>
+        <div class="${css.title}">单元测试</div>
+          创建一个foo_test.sol文件来测试你的智能合约，请查看ballot_test.sol示例文件。
+          <br/><br/>
+          你可以在<a href="https://remix.readthedocs.io/en/latest/unittesting_tab.html">这个文档</a>
+          中查看关于remix单元测试的更多信息。可以使用独立的NPM模块<a href="https://www.npmjs.com/package/remix-tests">remix-test</a>
+          在你的持续集成环境中运行单元测试。
+          <br/><br/>
+          要获取进一步详情，可以查看我们的文档中的<b>智能合约测试指南</b>。
+          <div class="${css.generateTestFile}" onclick="${generateTestFile}">生成测试文件</div>
         </div>
         <div class="${css.tests}">
           ${self.testList}
           <div class="${css.buttons}">
-            <div class="${css.runButton}"  onclick="${runTests}">Run Tests</div>
+            <div class="${css.runButton}"  onclick="${runTests}">运行测试</div>
             <label class="${css.label}" for="checkAllTests">
               <input id="checkAllTests"
                 type="checkbox"
                 onclick="${function (event) { checkAll(event) }}"
                 checked="true"
               >
-              Check/Uncheck all
+              选中所有/取消所有
             </label>
           </div>
           ${testsOutput}

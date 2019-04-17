@@ -3,7 +3,7 @@ var solidityTypeFormatter = require('./utils/SolidityTypeFormatter')
 var yo = require('yo-yo')
 
 function SolidityState () {
-  this.basicPanel = new DropdownPanel('Solidity State', {
+  this.basicPanel = new DropdownPanel('Solidity状态', {
     json: true,
     // TODO: used by TreeView ui
     formatSelf: solidityTypeFormatter.formatSelf,

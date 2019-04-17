@@ -23,10 +23,10 @@ class RecorderUI {
       .recorder {}
     `
 
-    this.runButton = yo`<i class="fa fa-play runtransaction ${css2.runTxs} ${css.icon}"  title="Run Transactions" aria-hidden="true"></i>`
+    this.runButton = yo`<i class="fa fa-play runtransaction ${css2.runTxs} ${css.icon}"  title="运行交易" aria-hidden="true"></i>`
     this.recordButton = yo`
       <i class="fa fa-floppy-o savetransaction ${css2.recorder} ${css.icon}"
-        onclick=${this.triggerRecordButton.bind(this)} title="Save Transactions" aria-hidden="true">
+        onclick=${this.triggerRecordButton.bind(this)} title="保存交易" aria-hidden="true">
       </i>`
 
     this.runButton.onclick = this.runScenario.bind(this)
@@ -36,16 +36,16 @@ class RecorderUI {
     var continueCb = (error, continueTxExecution, cancelCb) => {
       if (error) {
         var msg = typeof error !== 'string' ? error.message : error
-        modalDialog('Gas estimation failed', yo`<div>Gas estimation errored with the following message (see below).
-        The transaction execution will likely fail. Do you want to force sending? <br>
+        modalDialog('Gas估算失败', yo`<div>Gas估算失败，错误信息如下。
+        交易执行可能失败。你是否强行发送交易？<br>
         ${msg}
         </div>`,
           {
-            label: 'Send Transaction',
+            label: '发送交易',
             fn: () => {
               continueTxExecution()
             }}, {
-              label: 'Cancel Transaction',
+              label: '取消交易',
               fn: () => {
                 cancelCb()
               }
@@ -56,7 +56,7 @@ class RecorderUI {
     }
 
     var promptCb = (okCb, cancelCb) => {
-      modalDialogCustom.promptPassphrase(null, 'Personal mode is enabled. Please provide passphrase of account', '', okCb, cancelCb)
+      modalDialogCustom.promptPassphrase(null, '个人模式已启用，请提供账号的密码', '', okCb, cancelCb)
     }
 
     var alertCb = (msg) => {
@@ -76,7 +76,7 @@ class RecorderUI {
   triggerRecordButton () {
     this.recorder.saveScenario(
       (path, cb) => {
-        modalDialogCustom.prompt(null, 'Transactions will be saved in a file under ' + path, 'scenario.json', cb)
+        modalDialogCustom.prompt(null, '交易数据将存入' + path + '目录下', 'scenario.json', cb)
       },
       (error) => {
         if (error) return modalDialogCustom.alert(error)

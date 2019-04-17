@@ -28,16 +28,16 @@ class CmdInterpreterAPI {
       offsetToLineColumnConverter: self._components.registry.get('offsettolinecolumnconverter').api
     }
     self.commandHelp = {
-      'remix.getFile(path)': 'Returns the content of the file located at the given path',
-      'remix.setFile(path, content)': 'set the content of the file located at the given path',
-      'remix.debug(hash)': 'Start debugging a transaction.',
-      'remix.loadgist(id)': 'Load a gist in the file explorer.',
-      'remix.loadurl(url)': 'Load the given url in the file explorer. The url can be of type github, swarm, ipfs or raw http',
-      'remix.setproviderurl(url)': 'Change the current provider to Web3 provider and set the url endpoint.',
-      'remix.execute(filepath)': 'Run the script specified by file path. If filepath is empty, script currently displayed in the editor is executed.',
-      'remix.exeCurrent()': 'Run the script currently displayed in the editor',
-      'remix.help()': 'Display this help message',
-      'remix.debugHelp()': 'Display help message for debugging'
+      'remix.getFile(path)': '返回指定路径文件的内容',
+      'remix.setFile(path, content)': '设置指定路径文件的内容',
+      'remix.debug(hash)': '开始调试指定交易',
+      'remix.loadgist(id)': '在文件浏览器中载入指定的gist',
+      'remix.loadurl(url)': '在文件管理其中载入指定的url，可以来自github、swarm、ipfs等',
+      'remix.setproviderurl(url)': '修改当前提供器为Web3提供器，设置url访问端结点',
+      'remix.execute(filepath)': '运行指定路径的脚本文件，如果filepath为空，则运行编辑器里当前显示的脚本',
+      'remix.exeCurrent()': '运行编辑器里当前显示的脚本',
+      'remix.help()': '显示这个帮助信息',
+      'remix.debugHelp()': '显示调试相关的帮助信息'
     }
   }
   log () { arguments[0] != null ? this._components.terminal.commands.html(arguments[0]) : this._components.terminal.commands.html(arguments[1]) }

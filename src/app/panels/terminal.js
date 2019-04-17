@@ -44,12 +44,12 @@ class Terminal {
     self._components.cmdInterpreter = new CommandInterpreterAPI(this)
     self._components.dropdown = new Dropdown({
       options: [
-        'only remix transactions',
-        'all transactions',
-        'script'
+        '仅remix交易',
+        '所有交易',
+        '脚本'
       ],
-      defaults: ['only remix transactions', 'script'],
-      dependencies: {'all transactions': ['only remix transactions'], 'only remix transactions': ['all transactions']}
+      defaults: ['仅remix交易', '脚本'],
+      dependencies: {'所有交易': ['仅remix交易'], '仅remix交易': ['所有交易']}
     })
     self._components.dropdown.event.register('deselect', function (label) {
       self.event.trigger('filterChanged', ['deselect', label])
@@ -132,26 +132,26 @@ class Terminal {
     self._view.dragbar = yo`
       <div onmousedown=${mousedown} class=${css.dragbarHorizontal}></div>`
     self._view.dropdown = self._components.dropdown.render()
-    self._view.pendingTxCount = yo`<div class=${css.pendingTx} title='Pending Transactions'>0</div>`
+    self._view.pendingTxCount = yo`<div class=${css.pendingTx} title='待定交易'>0</div>`
     self._view.bar = yo`
       <div class=${css.bar}>
         ${self._view.dragbar}
         <div class=${css.menu}>
           ${self._view.icon}
           <div class=${css.clear} onclick=${clear}>
-            <i class="fa fa-ban" aria-hidden="true" title="Clear console"
+            <i class="fa fa-ban" aria-hidden="true" title="清理控制台"
             onmouseenter=${hover} onmouseleave=${hover}></i>
           </div>
           ${self._view.pendingTxCount}
           <div class=${css.verticalLine}></div>
           <div class=${css.listen}>
             <input onchange=${listenOnNetwork} type="checkbox"
-            title="If checked Remix will listen on all transactions mined in the current environment and not only transactions created by you">
+            title="如果选中该选项，Remix将监听所有当前环境中的交易，而不仅仅是你创建的交易">
           </div>
           ${self._view.dropdown}
           <div class=${css.search}>
             <i class="fa fa-search ${css.searchIcon}" aria-hidden="true"></i>
-            <input type="text" class=${css.filter} onkeydown=${filter}  placeholder="Search transactions">
+            <input type="text" class=${css.filter} onkeydown=${filter}  placeholder="搜索交易">
           </div>
         </div>
       </div>
@@ -385,21 +385,22 @@ class Terminal {
     self._cmdIndex = -1
     self._cmdTemp = ''
 
-    var intro = yo`<div><div> - Welcome to Remix v0.7.5 - </div><br>
-                  <div>You can use this terminal for: </div>
+    var intro = yo`<div><div> - 欢迎使用Remix v0.7.5 - </div><br>
+                  <div>你可以使用这个终端完成以下工作： </div>
                   <ul class=${css2.ul}>
-                    <li>Checking transactions details and start debugging.</li>
-                    <li>Running JavaScript scripts. The following libraries are accessible:
+                    <li>查看交易详情并启动调试。</li>
+                    <li>运行JavaScript脚本。终端已经内置了下面几个开发库：
                       <ul class=${css2.ul}>
                         <li><a target="_blank" href="https://web3js.readthedocs.io/en/1.0/">web3 version 1.0.0</a></li>
                         <li><a target="_blank" href="https://docs.ethers.io/ethers.js/html/">ethers.js</a> </li>
                         <li><a target="_blank" href="https://www.npmjs.com/package/swarmgw">swarmgw</a> </li>
-                        <li>compilers - contains currently loaded compiler</li>
+                        <li>compilers - 包含当前载入的编译器</li>
                       </ul>
                     </li>
-                    <li>Executing common command to interact with the Remix interface (see list of commands above). Note that these commands can also be included and run from a JavaScript script.</li>
-                    <li>Use exports/.register(key, obj)/.remove(key)/.clear() to register and reuse object across script executions.</li>
+                    <li>运行常用的与Remix界面交互的命令（参见前面命令列表）。注意这些命令也可以写入JavaScript脚本执行。</li>
+                    <li>使用exports/.register(key, obj)/.remove(key)/.clear()实现在多个脚本执行中注册并重用对象。</li>
                   </ul>
+                  <div>要快速掌握以太坊智能合约与DApp开发，推荐汇智网的<a href="http://www.hubwiz.com/course/?type=%E4%BB%A5%E5%A4%AA%E5%9D%8A&affid=remix7878" target="_blank">以太坊开发教程</a>。</div>
                   </div>`
 
     self._shell('remix.help()', self.commands, () => {})

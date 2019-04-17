@@ -8,7 +8,7 @@ class SolidityLocals {
 
   constructor (_parent, _traceManager, _internalTreeCall) {
     this.event = new EventManager()
-    this.basicPanel = new DropdownPanel('Solidity Locals', {
+    this.basicPanel = new DropdownPanel('Solidity局部变量', {
       json: true,
       formatSelf: solidityTypeFormatter.formatSelf,
       extractData: solidityTypeFormatter.extractData

@@ -76,15 +76,15 @@ function filepanel (localRegistry) {
   function remixdDialog () {
     return yo`
       <div class=${css.dialog}>
-        <div class=${css.dialogParagraph}>Interact with your file system from Remix. Click connect and find shared folder in the Remix file explorer (under localhost).
-          Before you get started, check out <a target="_blank" href="https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html">Tutorial_remixd_filesystem</a>
-          to find out how to run Remixd.
+        <div class=${css.dialogParagraph}>从Remix中访问你的文件系统。点击connect并在Remix文件浏览器中找到共享文件夹 (在localhost下面)。
+          在开始连接之前，请查看 <a target="_blank" href="https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html">remixd文件系统教程</a>
+          以了解如何运行Remixd。
         </div>
-        <div class=${css.dialogParagraph}>Connection will start a session between <em>${window.location.href}</em> and your local file system <i>ws://127.0.0.1:65520</i>
-          so please make sure your system is secured enough (port 65520 neither opened nor forwarded).
-          <i class="fa fa-link"></i> will show you current connection status.
+        <div class=${css.dialogParagraph}>连接将会在<em>${window.location.href}</em> 和你的本地文件系统 <i>ws://127.0.0.1:65520</i>之间启动一个会话，
+          因此请确保你的系统足够安全（端口 65520 未打开或重定向）。
+          再次点击<i class="fa fa-link"></i> 显示你当前的连接状态。
         </div>
-        <div class=${css.dialogParagraph}>This feature is still in Alpha, so we recommend you to keep a copy of the shared folder.</div>
+        <div class=${css.dialogParagraph}>这个功能还在Alpha阶段，因此我们建议你对共享文件夹进行备份。</div>
       </div>
     `
   }
@@ -94,27 +94,27 @@ function filepanel (localRegistry) {
       <div class=${css.container}>
         <div class=${css.fileexplorer}>
           <div class=${css.menu}>
-            <span onclick=${createNewFile} class="newFile ${css.newFile}" title="Create New File in the Browser Storage Explorer">
+            <span onclick=${createNewFile} class="newFile ${css.newFile}" title="创建新文件">
               <i class="fa fa-plus-circle"></i>
             </span>
             ${canUpload ? yo`
-              <span class=${css.uploadFile} title="Add Local file to the Browser Storage Explorer">
+              <span class=${css.uploadFile} title="上传本地文件">
                 <label class="fa fa-folder-open">
                   <input type="file" onchange=${uploadFile} multiple />
                 </label>
               </span>
             ` : ''}
-            <span class="${css.gist}" title="Publish all [browser] explorer files to a github gist" onclick=${() => publishToGist('browser')}>
+            <span class="${css.gist}" title="将[browser]目录下的文件发布到github gist" onclick=${() => publishToGist('browser')}>
               <i class="fa fa-github"></i>
             </span>
-            <span class="${css.gist}" title="Update the current [gist] explorer" onclick=${() => updateGist()}>
+            <span class="${css.gist}" title="更新当前的[gist]" onclick=${() => updateGist()}>
               <i class="fa fa-github"></i>
             </span>
-            <span class="${css.copyFiles}" title="Copy all files to another instance of Remix IDE" onclick=${copyFiles}>
+            <span class="${css.copyFiles}" title="拷贝所有文件到另一个Remix IDE实例" onclick=${copyFiles}>
               <i class="fa fa-files-o" aria-hidden="true"></i>
             </span>
             <span onclick=${connectToLocalhost} class="${css.connectToLocalhost}">
-              <i class="websocketconn fa fa-link" title="Connect to Localhost"></i>
+              <i class="websocketconn fa fa-link" title="连接本地主机"></i>
             </span>
           </div>
           <div class=${css.treeviews}>
@@ -267,7 +267,7 @@ function filepanel (localRegistry) {
   }
 
   function createNewFile () {
-    modalDialogCustom.prompt(null, 'File Name', 'Untitled.sol', (input) => {
+    modalDialogCustom.prompt(null, '文件名', 'Untitled.sol', (input) => {
       helper.createNonClashingName(input, self._deps.fileProviders['browser'], (error, newName) => {
         if (error) return modalDialogCustom.alert('Failed to create file ' + newName + ' ' + error)
         if (!self._deps.fileProviders['browser'].set(newName, '')) {
@@ -295,7 +295,7 @@ function filepanel (localRegistry) {
         if (error) console.log(error)
       })
     } else {
-      modalDialog('Connect to localhost', remixdDialog(),
+      modalDialog('连接本地主机', remixdDialog(),
         { label: 'Connect',
           fn: () => {
             self._deps.fileProviders['localhost'].init((error) => {
@@ -321,7 +321,7 @@ function filepanel (localRegistry) {
   }
 
   function publishToGist (fileProviderName) {
-    modalDialogCustom.confirm(null, 'Are you very sure you want to publish all your files anonymously as a public gist on github.com?', () => {
+    modalDialogCustom.confirm(null, '你确定要匿名发布所有文件为github.com上的公开gist吗？', () => {
       toGist(fileProviderName)
     })
   }
@@ -382,7 +382,7 @@ function filepanel (localRegistry) {
   // ------------------ copy files --------------
 
   function copyFiles () {
-    modalDialogCustom.prompt(null, 'To which other remix-ide instance do you want to copy over all files?', 'https://remix.ethereum.org', (target) => {
+    modalDialogCustom.prompt(null, '要拷贝所有文件到哪个remix-ide实例？', 'https://remix.ethereum.org', (target) => {
       doCopy(target)
     })
     function doCopy (target) {

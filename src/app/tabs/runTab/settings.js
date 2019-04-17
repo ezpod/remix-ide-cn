@@ -45,23 +45,22 @@ class SettingsUI {
     var environmentEl = yo`
       <div class="${css.crow}">
         <div id="selectExEnv" class="${css.col1_1}">
-          Environment
+          节点环境
         </div>
         <div class=${css.environment}>
           ${this.netUI}
           <select id="selectExEnvOptions" onchange=${() => { this.updateNetwork() }} class="${css.select}">
             <option id="vm-mode"
-              title="Execution environment does not connect to any node, everything is local and in memory only."
-              value="vm" checked name="executionContext"> JavaScript VM
+              title="JavaScript虚拟机不会连接任何节点，所有数据都在本地和内存中"
+              value="vm" checked name="executionContext"> JavaScript虚拟机
             </option>
             <option id="injected-mode"
-              title="Execution environment has been provided by Metamask or similar provider."
-              value="injected" checked name="executionContext"> Injected Web3
+              title="使用Metamask或类似提供器注入的Web3对象"
+              value="injected" checked name="executionContext">注入的Web3对象
             </option>
             <option id="web3-mode"
-              title="Execution environment connects to node at localhost (or via IPC if available), transactions will be sent to the network and can cause loss of money or worse!
-              If this page is served via https and you access your node via http, it might not work. In this case, try cloning the repository and serving it via http."
-              value="web3" name="executionContext"> Web3 Provider
+              title="连接到本机或其他节点，交易将发送到网络中，可能会造成资金损失！"
+              value="web3" name="executionContext"> Web3提供器
             </option>
           </select>
           <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md" target="_blank"><i class="${css.icon} fa fa-info"></i></a>
@@ -72,28 +71,28 @@ class SettingsUI {
     var accountEl = yo`
       <div class="${css.crow}">
         <div class="${css.col1_1}">
-          Account
-          <i class="fa fa-plus-circle ${css.icon}" aria-hidden="true" onclick=${this.newAccount.bind(this)} title="Create a new account"></i>
+          当前账号
+          <i class="fa fa-plus-circle ${css.icon}" aria-hidden="true" onclick=${this.newAccount.bind(this)} title="创建一个新账号"></i>
         </div>
         <div class=${css.account}>
           <select name="txorigin" class="${css.select}" id="txorigin"></select>
           ${copyToClipboard(() => document.querySelector('#runTabView #txorigin').value)}
-          <i class="fa fa-pencil-square-o ${css.icon}" aria-hiden="true" onclick=${this.signMessage.bind(this)} title="Sign a message using this account key"></i>
+          <i class="fa fa-pencil-square-o ${css.icon}" aria-hiden="true" onclick=${this.signMessage.bind(this)} title="使用这个账号的密钥对交易签名"></i>
         </div>
       </div>
     `
 
     var gasPriceEl = yo`
       <div class="${css.crow}">
-        <div class="${css.col1_1}">Gas limit</div>
+        <div class="${css.col1_1}">Gas上限</div>
         <input type="number" class="${css.col2}" id="gasLimit" value="3000000">
       </div>
     `
 
     var valueEl = yo`
       <div class="${css.crow}">
-        <div class="${css.col1_1}">Value</div>
-        <input type="text" class="${css.col2_1}" id="value" value="0" title="Enter the value and choose the unit">
+        <div class="${css.col1_1}">交易金额</div>
+        <input type="text" class="${css.col2_1}" id="value" value="0" title="输入数值并选择计量单位">
         <select name="unit" class="${css.col2_2}" id="unit">
           <option data-unit="wei">wei</option>
           <option data-unit="gwei">gwei</option>
@@ -150,7 +149,7 @@ class SettingsUI {
     selectExEnv.addEventListener('change', (event) => {
       let context = selectExEnv.options[selectExEnv.selectedIndex].value
       this.settings.changeExecutionContext(context, () => {
-        modalDialogCustom.confirm(null, 'Are you sure you want to connect to an ethereum node?', () => {
+        modalDialogCustom.confirm(null, '你确定要连接到外部以太坊节点吗？', () => {
           modalDialogCustom.prompt(null, 'Web3 Provider Endpoint', 'http://localhost:8545', (target) => {
             this.settings.setProviderFromEndpoint(target, context, (alertMsg) => {
               if (alertMsg) {

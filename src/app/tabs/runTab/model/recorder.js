@@ -289,10 +289,10 @@ class Recorder {
     var currentFile = this.config.get('currentFile')
     this.fileManager.fileProviderOf(currentFile).get(currentFile, (error, json) => {
       if (error) {
-        return cb('Invalid Scenario File ' + error)
+        return cb('无效的scenario文件 ' + error)
       }
       if (!currentFile.match('.json$')) {
-        return cb('A scenario file is required. Please make sure a scenario file is currently displayed in the editor. The file must be of type JSON. Use the "Save Transactions" Button to generate a new Scenario File.')
+        return cb('需要senario文件。请确保在编辑器中当前显示有scenario文件。文件必须是JSON格式。使用[保存交易]按钮生成新的scenario文件。')
       }
       try {
         var obj = JSON.parse(json)

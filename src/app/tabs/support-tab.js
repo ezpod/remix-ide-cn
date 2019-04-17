@@ -26,27 +26,26 @@ class SupportTab {
 
     const remixd = yo`
       <div class="${css.info}">
-        <div class=${css.title}>Accessing local files</div>
+        <div class=${css.title}>访问本地文件</div>
         <div class="${css.crow}">
-          Remixd is a tool which allow Remix IDE to access files located in your local computer.
-          it can also be used to setup a development environment.
+          Remixd是一个允许在Remix IDE中访问本地计算机文件的工具，它也可以用于搭建开发环境。
         </div>
-        <div class="${css.crow}">More infos:</div>
+        <div class="${css.crow}">进一步信息:</div>
         <div class="${css.crow}"><a target="_blank" href="https://github.com/ethereum/remixd"> https://github.com/ethereum/remixd</a></div>
         <div class="${css.crow}"><a target="_blank" href="https://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem">http://remix.readthedocs.io/en/latest/tutorial_remixd_filesystem.html</a></div>
-        <div class="${css.crow}">Installation: <pre class=${css.remixdinstallation}>npm install remixd -g</pre></div>
+        <div class="${css.crow}">安装: <pre class=${css.remixdinstallation}>npm install remixd -g</pre></div>
       </div>`
 
     const localremixd = yo`
       <div class="${css.info}">
-        <div class=${css.title}>Running Remix locally</div>
+        <div class=${css.title}>本地运行Remix</div>
         <div class="${css.crow}">
-          as a NPM module:
+          作为一个NPM模块:
         </div>
         <a target="_blank" href="https://www.npmjs.com/package/remix-ide">https://www.npmjs.com/package/remix-ide</a>
         <pre class=${css.remixdinstallation}>npm install remix-ide -g</pre>
         <div class="${css.crow}">
-          as an electron app:
+          作为一个electron应用:
         </div>
         <a target="_blank" href="https://github.com/horizon-games/remix-app">https://github.com/horizon-games/remix-app</a>
       </div>`
@@ -54,14 +53,14 @@ class SupportTab {
     this.el = yo`
       <div class="${css.supportTabView}" id="supportView">
         <div class="${css.infoBox}">
-          Have a question, found a bug or want to propose a feature? Have a look at the
-          <a target="_blank" href='https://github.com/ethereum/remix-ide/issues'> issues</a> or check out
-          <a target="_blank" href='https://remix.readthedocs.io/en/latest/'> the documentation page on Remix</a> or
-          <a target="_blank" href='https://solidity.readthedocs.io/en/latest/'> Solidity</a>.
+          碰到一个问题，找到一个bug或者希望提议一个新的功能特性？请访问
+          <a target="_blank" href='https://github.com/ethereum/remix-ide/issues'> issues</a> 或者查看
+          <a target="_blank" href='https://remix.readthedocs.io/en/latest/'> the documentation page on Remix</a> 或者
+          <a target="_blank" href='https://solidity.readthedocs.io/en/latest/'> Solidity</a>。
         </div>
         <div class="${css.chat}">
-          <div class="${css.chatTitle}" onclick=${() => { window.open('https://gitter.im/ethereum/remix') }} title='Click to open chat in Gitter'>
-            <div class="${css.chatTitleText}">ethereum/remix community chat</div>
+          <div class="${css.chatTitle}" onclick=${() => { window.open('https://gitter.im/ethereum/remix') }} title='点击进入Gitter交流频道'>
+            <div class="${css.chatTitleText}">ethereum/remix社区交流</div>
           </div>
           ${this.gitterIframe}
         </div>

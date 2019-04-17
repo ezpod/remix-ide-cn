@@ -50,14 +50,14 @@ staticAnalysisView.prototype.render = function () {
         ${this.modulesView}
       </div>
       <div class="${css.buttons}">
-        <button class="${css.buttonRun}" onclick="${function () { self.run() }}" >Run</button>
+        <button class="${css.buttonRun}" onclick="${function () { self.run() }}" >运行</button>
         <label class="${css.label}" for="autorunstaticanalysis">
           <input id="autorunstaticanalysis"
             type="checkbox"
             style="vertical-align:bottom"
             checked="true"
           >
-          Auto run
+          自动运行
         </label>
         <label class="${css.label}" for="checkAllEntries">
           <input id="checkAllEntries"
@@ -66,7 +66,7 @@ staticAnalysisView.prototype.render = function () {
             style="vertical-align:bottom"
             checked="true"
           >
-          Check/Uncheck all
+          选中所有/取消所有
         </label>
       </div>
       <div class="${css.result}" "id='staticanalysisresult'></div>
@@ -171,13 +171,12 @@ staticAnalysisView.prototype.renderModules = function () {
             style="vertical-align:bottom"
             onclick="${function (event) { self.checkModule(event) }}"
             >
-          ${item.name}
-          ${item.description}
+           ${_it(item.name.trim())}
         </label>
             `
     })
     return yo`<div class="${css.analysisModulesContainer}">
-                <label class="${css.label}"><b>${category[0].categoryDisplayName}</b></label>
+                <label class="${css.label}"><b>${_gt(category[0].categoryDisplayName)}</b></label>
                 ${entriesDom}
               </div>`
   })
@@ -192,4 +191,40 @@ function preProcessModules (arr) {
     item.categoryId = item.category.id
     return item
   })
+}
+
+//jACKY
+const _dict = {
+  "Transaction origin:": {name: "交易发起：",desc: "使用tx.origin时警告"},
+  "Check effects:": {name: "检查效果：",desc: "避免重入问题"},
+  "Inline assembly:": {name: "内联汇编：",desc: "使用内联汇编"},
+  "Block timestamp:":{name:"区块时间戳：",desc:"语义不明确"},
+  "Low level calls:": {name: "底层调用：",desc:"语义不明确"},
+  "Block.blockhash usage:": { name:"区块哈希用法：",desc:"语义不明确"},
+  "Selfdestruct:": {name:"自析构：",desc:"语义不明确"},
+  "Gas costs:": {name:"gas成本：",desc:"方法gas需求过高时警告"},
+  "This on local calls:":{name:"本地调用使用this：",desc:"调用本地方法时使用this"},
+  "Delete on dynamic Array:":{name:"动态数组删除：",desc:"使用require"},
+  "For loop iterates over dynamic array:":{name:"动态数组循环：",desc:"for循环次数取决于动态数组长度"},
+  "Constant functions:": {name:"常函数：",desc:"检查潜在的常函数"},
+  "Similar variable names:":{name:"变量名近似：",desc:"检查变量名是否太相似"},
+  "no return:": {name:"没有返回语句：",desc:"函数没有返回语句"},
+  "Guard Conditions:": {name:"条件保障：",desc:"使用require"},
+  "Result not used:":{name:"结果未使用：",desc:"操作结果没有使用"},
+  "String Length:":{name:"字符串长度：",desc:"字节数组长度!=字符串长度"},
+  "Delete from dynamic Array:":{name:"动态数组成员删除：",desc:"可能导致内存碎片"},
+  "ERC20:":{name:"ERC20：",desc:"Decimal应改为uint8"}
+}
+function _it(t){
+  if(_dict[t]) return _dict[t].name + _dict[t].desc
+  return t
+}
+const _dict_group = {
+  "Security": "安全性分析",
+  "Gas & Economy":"运行成本分析",
+  "Miscellaneous":"其他分析",
+  "ERC":"以太坊改进协议分析"
+}
+function _gt(t){
+  return _dict_group[t] ? _dict_group[t] : t
 }

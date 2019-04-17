@@ -52,16 +52,16 @@ ButtonNavigator.prototype.render = function () {
   var self = this
   var view = yo`<div class="${css.buttons}">
     <div class="${css.stepButtons}">
-      <button id='overback' title='Step over back' class='${css.navigator} ${css.stepButton} fa fa-reply' onclick=${function () { self.event.trigger('stepOverBack') }} disabled=${this.overBackDisabled} ></button>
-      <button id='intoback' title='Step back' class='${css.navigator} ${css.stepButton} fa fa-level-up' onclick=${function () { self.event.trigger('stepIntoBack') }} disabled=${this.intoBackDisabled} ></button>
-      <button id='intoforward' title='Step into'  class='${css.navigator} ${css.stepButton} fa fa-level-down' onclick=${function () { self.event.trigger('stepIntoForward') }} disabled=${this.intoForwardDisabled} ></button>
-      <button id='overforward' title='Step over forward' class='${css.navigator} ${css.stepButton} fa fa-share' onclick=${function () { self.event.trigger('stepOverForward') }} disabled=${this.overForwardDisabled} ></button>
+      <button id='overback' title='单步跳过回退' class='${css.navigator} ${css.stepButton} fa fa-reply' onclick=${function () { self.event.trigger('stepOverBack') }} disabled=${this.overBackDisabled} ></button>
+      <button id='intoback' title='单步回退' class='${css.navigator} ${css.stepButton} fa fa-level-up' onclick=${function () { self.event.trigger('stepIntoBack') }} disabled=${this.intoBackDisabled} ></button>
+      <button id='intoforward' title='单步进入'  class='${css.navigator} ${css.stepButton} fa fa-level-down' onclick=${function () { self.event.trigger('stepIntoForward') }} disabled=${this.intoForwardDisabled} ></button>
+      <button id='overforward' title='单步跳过前进' class='${css.navigator} ${css.stepButton} fa fa-share' onclick=${function () { self.event.trigger('stepOverForward') }} disabled=${this.overForwardDisabled} ></button>
     </div>
 
     <div class="${css.jumpButtons}">
-      <button id='jumppreviousbreakpoint' title='Jump to the previous breakpoint' class='${css.navigator} ${css.jumpButton} fa fa-step-backward' onclick=${function () { self.event.trigger('jumpPreviousBreakpoint') }} disabled=${this.jumpPreviousBreakpointDisabled} ></button>
-      <button id='jumpout' title='Jump out' class='${css.navigator} ${css.jumpButton} fa fa-eject' onclick=${function () { self.event.trigger('jumpOut') }} disabled=${this.jumpOutDisabled} ></button>
-      <button id='jumpnextbreakpoint' title='Jump to the next breakpoint' class='${css.navigator} ${css.jumpButton} fa fa-step-forward' onclick=${function () { self.event.trigger('jumpNextBreakpoint') }} disabled=${this.jumpNextBreakpointDisabled} ></button>
+      <button id='jumppreviousbreakpoint' title='跳转到前一个断点' class='${css.navigator} ${css.jumpButton} fa fa-step-backward' onclick=${function () { self.event.trigger('jumpPreviousBreakpoint') }} disabled=${this.jumpPreviousBreakpointDisabled} ></button>
+      <button id='jumpout' title='跳出' class='${css.navigator} ${css.jumpButton} fa fa-eject' onclick=${function () { self.event.trigger('jumpOut') }} disabled=${this.jumpOutDisabled} ></button>
+      <button id='jumpnextbreakpoint' title='跳转到下一个断点' class='${css.navigator} ${css.jumpButton} fa fa-step-forward' onclick=${function () { self.event.trigger('jumpNextBreakpoint') }} disabled=${this.jumpNextBreakpointDisabled} ></button>
     </div>
     <div id='reverted' style="display:none">
       <button id='jumptoexception' title='Jump to exception' class='${css.navigator} ${css.button} fa fa-exclamation-triangle' onclick=${function () { self.event.trigger('jumpToException') }} disabled=${this.jumpOutDisabled} >

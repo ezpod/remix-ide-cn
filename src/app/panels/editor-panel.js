@@ -176,12 +176,12 @@ class EditorPanel {
     self._view.tabsbar = yo`
       <div class=${css.tabsbar}>
         <div class=${css.buttons}>
-          <span class=${css.toggleLHP} onclick=${toggleLHP} title="Toggle left hand panel">
+          <span class=${css.toggleLHP} onclick=${toggleLHP} title="切换左面板显示状态">
             <i class="fa fa-angle-double-left"></i>
           </span>
           <span class=${css.changeeditorfontsize} >
-            <i class="increditorsize fa fa-plus" onclick=${increase} aria-hidden="true" title="increase editor font size"></i>
-            <i class="decreditorsize fa fa-minus" onclick=${decrease} aria-hidden="true" title="decrease editor font size"></i>
+            <i class="increditorsize fa fa-plus" onclick=${increase} aria-hidden="true" title="字体加大"></i>
+            <i class="decreditorsize fa fa-minus" onclick=${decrease} aria-hidden="true" title="字体减小"></i>
           </span>
         </div>
         ${self._view.tabs}

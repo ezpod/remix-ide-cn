@@ -100,12 +100,12 @@ TxBrowser.prototype.render = function () {
   var view = yo`<div class="${css.container}">
         <div class="${css.txContainer}">
           <div class="${css.txinputs}">
-            <input class="${css.txinput}" onkeyup=${function () { self.updateBlockN(arguments[0]) }} type='text' placeholder=${'Block number'} />
-            <input class="${css.txinput}" id='txinput' onkeyup=${function () { self.updateTxN(arguments[0]) }} type='text' placeholder=${'Transaction index or hash'} />
+            <input class="${css.txinput}" onkeyup=${function () { self.updateBlockN(arguments[0]) }} type='text' placeholder=${'区块编号'} />
+            <input class="${css.txinput}" id='txinput' onkeyup=${function () { self.updateTxN(arguments[0]) }} type='text' placeholder=${'交易索引或哈希'} />
           </div>
           <div class="${css.txbuttons}">
-            <button id='load' class='${css.txbutton}' title='start debugging' onclick=${function () { self.submit() }}>Start debugging</button>
-            <button id='unload' class='${css.txbutton}' title='stop debugging' onclick=${function () { self.unload() }}>Stop</button>
+            <button id='load' class='${css.txbutton}' title='开始调试' onclick=${function () { self.submit() }}>开始调试</button>
+            <button id='unload' class='${css.txbutton}' title='停止调试' onclick=${function () { self.unload() }}>停止</button>
           </div>
         </div>
         <span id='error'></span>

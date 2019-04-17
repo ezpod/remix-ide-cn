@@ -216,13 +216,13 @@ module.exports = class CompileTab {
 
     self._view.versionSelector = yo`
       <select onchange=${onchangeLoadVersion} class="${css.select}" id="versionSelector" disabled>
-        <option disabled selected>Select new compiler version</option>
+        <option disabled selected>选择其他版本的编译器</option>
       </select>`
     self._view.version = yo`<span id="version"></span>`
 
     self._view.warnCompilationSlow = yo`<i title="Compilation Slow" style="visibility:hidden" class="${css.warnCompilationSlow} fa fa-exclamation-triangle" aria-hidden="true"></i>`
     self._view.compileIcon = yo`<i class="fa fa-refresh ${css.icon}" aria-hidden="true"></i>`
-    self._view.compileButton = yo`<div class="${css.compileButton}" onclick=${compile} id="compile" title="Compile source code">${self._view.compileIcon} Start to compile (Ctrl-S)</div>`
+    self._view.compileButton = yo`<div class="${css.compileButton}" onclick=${compile} id="compile" title="编译源代码">${self._view.compileIcon} 开始编译(Ctrl-S)</div>`
     self._view.autoCompile = yo`<input class="${css.autocompile}" onchange=${updateAutoCompile} id="autoCompile" type="checkbox" title="Auto compile">`
     self._view.hideWarningsBox = yo`<input class="${css.autocompile}" onchange=${hideWarnings} id="hideWarningsBox" type="checkbox" title="Hide warnings">`
     if (self.data.autoCompile) self._view.autoCompile.setAttribute('checked', '')
@@ -230,7 +230,7 @@ module.exports = class CompileTab {
     self._view.compileContainer = yo`
       <div class="${css.compileContainer}">
         <div class="${css.info}">
-          <span>Current version:</span> ${self._view.version}
+          <span>当前版本:</span> ${self._view.version}
           <div class="${css.crow}">
             ${self._view.versionSelector}
           </div>
@@ -238,15 +238,15 @@ module.exports = class CompileTab {
             <div class=${css.checkboxes}>
               <div class="${css.autocompileContainer}">
                 ${self._view.autoCompile}
-                <label for="autoCompile" class="${css.autocompileText}">Auto compile</label>
+                <label for="autoCompile" class="${css.autocompileText}">自动编译</label>
               </div>
               <div class="${css.optimizeContainer}">
                 <div>${self._view.optimize}</div>
-                <label for="optimize" class="${css.checkboxText}">Enable Optimization</label>
+                <label for="optimize" class="${css.checkboxText}">启用优化</label>
               </div>
               <div class=${css.hideWarningsContainer}>
                 ${self._view.hideWarningsBox}
-                <label for="hideWarningsBox" class="${css.autocompileText}">Hide warnings</label>
+                <label for="hideWarningsBox" class="${css.autocompileText}">隐藏警告信息</label>
               </div>
             </div>
             ${self._view.compileButton}
@@ -260,17 +260,17 @@ module.exports = class CompileTab {
       <div class="${css.container}">
         <div class="${css.contractContainer}">
           ${self._view.contractNames}
-          <div title="Publish on Swarm" class="${css.publish}" onclick=${publish}>
+          <div title="发布到Swarm" class="${css.publish}" onclick=${publish}>
             <i class="${css.copyIcon} fa fa-upload" aria-hidden="true"></i><span>Swarm</span>
           </div>
         </div>
         <div class="${css.contractHelperButtons}">
-          <div title="Display Contract Details" class="${css.details}" onclick=${details}>Details</div>
-          <div title="Copy ABI to clipboard" class="${css.copyButton}" onclick=${copyABI}>
+          <div title="显示合约详情" class="${css.details}" onclick=${details}>详情</div>
+          <div title="拷贝ABI到剪切板" class="${css.copyButton}" onclick=${copyABI}>
             <i class="${css.copyIcon} fa fa-clipboard" aria-hidden="true"></i> ABI
           </div>
-          <div title="Copy Bytecode to clipboard" class="${css.copyButton} ${css.bytecodeButton}" onclick=${copyBytecode}>
-            <i class="${css.copyIcon} fa fa-clipboard" aria-hidden="true"></i> Bytecode
+          <div title="拷贝字节码到剪切板" class="${css.copyButton} ${css.bytecodeButton}" onclick=${copyBytecode}>
+            <i class="${css.copyIcon} fa fa-clipboard" aria-hidden="true"></i> 字节码
           </div>
         </div>
       </div>`
@@ -419,7 +419,7 @@ module.exports = class CompileTab {
   _updateVersionSelector () {
     const self = this
     self._view.versionSelector.innerHTML = ''
-    self._view.versionSelector.appendChild(yo`<option disabled selected>Select new compiler version</option>`)
+    self._view.versionSelector.appendChild(yo`<option disabled selected>选择其他版本的编译器</option>`)
     self.data.allversions.forEach(build => self._view.versionSelector.appendChild(yo`<option value=${build.path}>${build.longVersion}</option>`))
     self._view.versionSelector.removeAttribute('disabled')
     self._components.queryParams.update({ version: self.data.selectedVersion })

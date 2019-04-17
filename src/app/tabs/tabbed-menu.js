@@ -17,7 +17,8 @@ class TabbedMenu {
     }
     self._view = { el: null, viewport: null, tabs: {}, contents: {} }
     self._deps.app.event.register('debuggingRequested', () => {
-      self.selectTabByTitle('Debugger')
+      //self.selectTabByTitle('Debugger')
+      self.selectTabByTitle('调试器')
     })
   }
   render () {

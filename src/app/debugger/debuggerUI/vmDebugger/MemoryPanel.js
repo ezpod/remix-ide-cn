@@ -3,7 +3,7 @@ var DropdownPanel = require('./DropdownPanel')
 var yo = require('yo-yo')
 
 function MemoryPanel () {
-  this.basicPanel = new DropdownPanel('Memory', {
+  this.basicPanel = new DropdownPanel('内存 ', {
     json: true,
     css: {
       'font-family': 'monospace'

@@ -43,14 +43,14 @@ class ContractDropdownUI {
   }
 
   render () {
-    this.compFails = yo`<i title="Contract compilation failed. Please check the compile tab for more information." class="fa fa-times-circle ${css.errorIcon}" ></i>`
-    var info = yo`<i class="fa fa-info ${css.infoDeployAction}" aria-hidden="true" title="*.sol files allows deploying and accessing contracts. *.abi files only allows accessing contracts."></i>`
+    this.compFails = yo`<i title="合约编译失败，请检查[编译]选项页查看更多信息" class="fa fa-times-circle ${css.errorIcon}" ></i>`
+    var info = yo`<i class="fa fa-info ${css.infoDeployAction}" aria-hidden="true" title="*.sol文件可以部署、访问合约，*.abi文件只能访问合约"></i>`
 
-    this.atAddressButtonInput = yo`<input class="${css.input} ataddressinput" placeholder="Load contract from Address" title="atAddress" />`
+    this.atAddressButtonInput = yo`<input class="${css.input} ataddressinput" placeholder="载入部署在这个地址的合约" title="指定合约地址" />`
     this.selectContractNames = yo`<select class="${css.contractNames}" disabled></select>`
 
     this.createPanel = yo`<div class="${css.button}"></div>`
-    this.orLabel = yo`<div class="${css.orLabel}">or</div>`
+    this.orLabel = yo`<div class="${css.orLabel}">或者</div>`
     var el = yo`
       <div class="${css.container}">
         <div class="${css.subcontainer}">
@@ -60,7 +60,7 @@ class ContractDropdownUI {
           ${this.createPanel}
           ${this.orLabel}
           <div class="${css.button} ${css.atAddressSect}">
-            <div class="${css.atAddress}" onclick=${this.loadFromAddress.bind(this)}>At Address</div>
+            <div class="${css.atAddress}" onclick=${this.loadFromAddress.bind(this)}>合约地址</div>
             ${this.atAddressButtonInput}
           </div>
         </div>
@@ -90,14 +90,14 @@ class ContractDropdownUI {
   setInputParamsPlaceHolder () {
     this.createPanel.innerHTML = ''
     if (this.selectContractNames.selectedIndex < 0 || this.selectContractNames.children.length <= 0) {
-      this.createPanel.innerHTML = 'No compiled contracts'
+      this.createPanel.innerHTML = '没有找到已编译合约'
       return
     }
 
     var selectedContract = this.getSelectedContract()
     var createConstructorInstance = new MultiParamManager(0, selectedContract.getConstructorInterface(), (valArray, inputsValues) => {
       this.createInstance(inputsValues)
-    }, selectedContract.getConstructorInputs(), 'Deploy', selectedContract.bytecodeObject)
+    }, selectedContract.getConstructorInputs(), '部署', selectedContract.bytecodeObject)
     this.createPanel.appendChild(createConstructorInstance.render())
   }
 
