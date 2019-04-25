@@ -40,7 +40,7 @@ class SettingsUI {
   }
 
   render () {
-    this.netUI = yo`<span class=${css.network}></span>`
+    this.netUI = yo`<span class="${css.network} badge badge-secondary"></span>`
 
     var environmentEl = yo`
       <div class="${css.crow}">
@@ -48,7 +48,6 @@ class SettingsUI {
           Environment
         </div>
         <div class=${css.environment}>
-          ${this.netUI}
           <select id="selectExEnvOptions" onchange=${() => { this.updateNetwork() }} class="form-control ${css.select}">
             <option id="vm-mode"
               title="Execution environment does not connect to any node, everything is local and in memory only."
@@ -68,7 +67,15 @@ class SettingsUI {
         </div>
       </div>
     `
-
+    var networkEl = yo`
+    <div class="${css.crow}">
+        <div class="${css.col1_1}">
+        </div>
+        <div class="${css.environment}">
+          ${this.netUI}
+        </div>
+      </div>
+    `
     var accountEl = yo`
       <div class="${css.crow}">
         <div class="${css.col1_1}">
@@ -108,6 +115,7 @@ class SettingsUI {
     var el = yo`
       <div class="${css.settings}">
         ${environmentEl}
+        ${networkEl}
         ${accountEl}
         ${gasPriceEl}
         ${valueEl}
@@ -231,7 +239,7 @@ class SettingsUI {
         this.netUI.innerHTML = 'can\'t detect network '
         return
       }
-      this.netUI.innerHTML = `<i class="${css.networkItem} fas fa-plug" aria-hidden="true"></i> ${name} (${id || '-'})`
+      this.netUI.innerHTML = `${name} (${id || '-'}) network`
     })
   }
 
